@@ -1,0 +1,15 @@
+{
+  "type": "module",
+  "scripts": {
+    "start": "del-cli ./dist && tsc && node ./dist/main.js"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.17",
+    "del": "^8.0.0",
+    "del-cli": "^6.0.0"
+  },
+  "dependencies": {
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7"
+  }
+}

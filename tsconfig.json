@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "declaration": false,
+    "esModuleInterop": true,
+    "module": "ES2022",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "es2022",
+    "skipLibCheck": true
+  }
+}
