@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "./dist",
+    "outDir": "./dist/server",
     "declaration": false,
     "esModuleInterop": true,
     "module": "ES2022",

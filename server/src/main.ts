@@ -14,16 +14,17 @@ await database.innitDB();
 rl.question('what actor do you want to know about? ', async (name: string) => {
 
     let actor = await database.getActorByName(name);
-    let stringActor = JSON.stringify(actor);
+    let stringActor;
 
-    console.log(`Oh yeah they're cool. Here is some information: ${actor}`);
+    if(actor){
+        stringActor = JSON.stringify(actor);
+    } else {
+        stringActor = "no actor found (did you spell it right?)"
+    }
+    
+    console.log(`${stringActor}`);
     rl.close();
 });
 
 
 //Takehito Koyasu
-
-          //theses are changes       
-    
-
-

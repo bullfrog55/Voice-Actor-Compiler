@@ -1,14 +1,16 @@
 {
-  "type": "module",
   "scripts": {
-    "start": "del-cli ./dist && tsc && node ./dist/main.js"
+    "start": "del-cli ./dist && tsc && node ./dist/server/express_server.js"
   },
+  "type": "module",
   "devDependencies": {
+    "@types/express": "^5.0.2",
     "@types/node": "^22.15.17",
     "del": "^8.0.0",
     "del-cli": "^6.0.0"
   },
   "dependencies": {
+    "express": "^5.1.0",
     "sqlite": "^5.1.1",
     "sqlite3": "^5.1.7"
   }

@@ -14,7 +14,7 @@ export class MyDatabase {
 
     }
 
-    public async getActorByName(name: string) {
+    public async getActorByName(name: string): Promise<undefined | IActor> {
         //get all the actors
         let actors = await this.getActorData();
         // for the length of the database array from getActorData check if the name is the same as the input
@@ -23,6 +23,8 @@ export class MyDatabase {
             let actor = actors[i];
             if (actor.name.toLowerCase() === name.toLowerCase()) {
                 return actor;
+            } else {
+                return undefined
             }
         }
     }
@@ -98,7 +100,7 @@ class [class name] {
 
  */
 
-interface IActor {
+export interface IActor {
     birthday: string;
     id: number;
     name: string;
