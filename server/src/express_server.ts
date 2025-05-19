@@ -1,9 +1,13 @@
 import express, {Request, Response} from 'express';
-import {IActor} from './MyDatabase.js';
+import {IActor, MyDatabase} from './MyDatabase.js';
 
 
 const app = express();
 const port = 3000;
+let database = new MyDatabase();
+
+await database.innitDB();
+
 
 app.get('/', (req: Request, res: Response) => {
     res.send('Hello World! Today is my birthday!');
@@ -13,6 +17,16 @@ app.get('/temp', (req: Request, res: Response) => {
     res.send('Hello World! This is the alternate text!');
 });
 
+app.get('/findInfo', async (req: Request, res: Response) => {
+    let actorName = req.query.actorName as string | undefined;
+    if (actorName) {
+       let results =  await database.getActorByName(actorName);
+       res.json(results);
+    } else {
+        console.log('actorName undefined.');
+        res.send('actorName undefined.');
+    }
+});
 
 app.get('/func', (req: Request, res: Response) => {
     let param = req.query.name as string;
@@ -35,7 +49,7 @@ app.get('/func', (req: Request, res: Response) => {
         notableWork2: 'nothing else'
     };
 
-    if (param&&ageParam) {
+    if (param && ageParam) {
         firstPerson.name = param;
         secondPerson.birthday = ageParam;
     }

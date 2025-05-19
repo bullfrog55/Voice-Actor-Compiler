@@ -23,9 +23,7 @@ export class MyDatabase {
             let actor = actors[i];
             if (actor.name.toLowerCase() === name.toLowerCase()) {
                 return actor;
-            } else {
-                return undefined
-            }
+            } 
         }
     }
 
@@ -38,10 +36,10 @@ export class MyDatabase {
 
             let currentActor: IActor[] = await this._db.all(sqlCommand);
 
-            await this._db.close();
+//            await this._db.close();
             return currentActor;
         } else {
-            return [];
+            throw new Error('database is undefined');
         }
 
     }
