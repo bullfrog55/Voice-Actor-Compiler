@@ -5,7 +5,7 @@ import {IActor, MyDatabase} from './MyDatabase.js';
 const app = express();
 const port = 3000;
 let database = new MyDatabase();
-
+app.use(express.static('client/src'));
 await database.innitDB();
 
 
@@ -20,11 +20,12 @@ app.get('/temp', (req: Request, res: Response) => {
 app.get('/findInfo', async (req: Request, res: Response) => {
     let actorName = req.query.actorName as string | undefined;
     if (actorName) {
-       let results =  await database.getActorByName(actorName);
-       res.json(results);
+        let results = await database.getActorByName(actorName);
+        res.json(results);
     } else {
-        console.log('actorName undefined.');
-        res.send('actorName undefined.');
+        console.log('for /findInfo actorName parameter is missing.');
+        res.status(500);
+        res.send('for /findInfo actorName parameter is missing.');
     }
 });
 
@@ -69,3 +70,8 @@ app.listen(port, (error?) => {
 });
 
 
+
+
+
+
+//Takehito Koyasu

@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "./dist/server",
+    "outDir": "./dist",
     "declaration": false,
     "esModuleInterop": true,
     "module": "ES2022",
@@ -10,5 +10,11 @@
     "strict": true,
     "target": "es2022",
     "skipLibCheck": true
-  }
+  },
+  "include": [
+    "./server/src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

@@ -1,13 +1,24 @@
 {
   "scripts": {
-    "start": "del-cli ./dist && tsc && node ./dist/server/express_server.js"
+    "start": "npm-run-all clean tsc:server tsc:client express",
+    "----": "-----------------------",
+    "clean": "del-cli ./dist",
+    "tsc:server": "tsc -p ./tsconfig.json",
+    "tsc:client": "tsc -p ./client/tsconfig.client.json",
+    "express": "node ./dist/express.server.js",
+    
+    
+    "start2": "concurrently --names express,browser-sync \"npm run express\" \"npm run bs\" --pad-prefix",
+    "express:watch": "nodemon ./server/src/main.js",
+    "bs": "browser-sync start --config bs-config.js"
   },
   "type": "module",
   "devDependencies": {
     "@types/express": "^5.0.2",
     "@types/node": "^22.15.17",
     "del": "^8.0.0",
-    "del-cli": "^6.0.0"
+    "del-cli": "^6.0.0",
+    "npm-run-all": "^4.1.5"
   },
   "dependencies": {
     "express": "^5.1.0",
