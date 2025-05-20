@@ -1,7 +1,6 @@
 import readline from 'node:readline';
 import {MyDatabase} from './MyDatabase.js';
 
-
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,

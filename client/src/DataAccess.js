@@ -1,5 +1,5 @@
 export class DataAccess {
-    async getActorAPI(name) {
+    async getActor(name) {
         //http://localhost:3000/findInfo?actorName=Takehito%20Koyasu
         let response = await fetch(`http://localhost:3000/findInfo?actorName=${name}`);
         if (response.ok) {

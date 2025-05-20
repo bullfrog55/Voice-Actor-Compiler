@@ -1,22 +1,39 @@
 import { DataAccess } from './DataAccess.js';
 let dataAccess = new DataAccess();
 let searchBar = document.getElementById('searchBar');
-let searchButt = document.getElementById('searchButt');
+let searchButton = document.getElementById('searchButton');
 let searchInput = searchBar;
-if (searchButt) {
-    searchButt.addEventListener('click', async (e) => {
+let infoBox = document.getElementById('infoBox');
+let resetButton = document.getElementById('resetButton');
+if (searchButton) {
+    searchButton.addEventListener('click', async (e) => {
         await manageSearchInput();
     });
 }
+if (resetButton) {
+    resetButton.addEventListener('click', async (e) => {
+        resetSearch();
+    });
+}
+function resetSearch() {
+    if (infoBox) {
+        infoBox.innerText = '';
+    }
+    if (searchInput) {
+        searchInput.value = '';
+    }
+}
 export async function manageSearchInput() {
     let userInput;
-    if (searchBar) {
+    if (searchBar && infoBox) {
         userInput = searchInput.value;
-        console.log(await dataAccess.getActorAPI(userInput));
+        let getActor = await dataAccess.getActor(userInput);
+        console.log(getActor);
+        infoBox.innerText = JSON.stringify(getActor);
     }
     else {
         console.log('gotta make the search bar dummy');
     }
 }
-//Takehito Koyasu
+//
 //# sourceMappingURL=main.js.map
