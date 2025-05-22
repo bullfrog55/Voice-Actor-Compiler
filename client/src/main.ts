@@ -35,19 +35,22 @@ function resetSearch() {
 }
 
 export async function manageSearchInput() {
-
-
+    
     let userInput;
     if (searchBar && infoBox) {
         userInput = searchInput.value;
-        let getActor = await dataAccess.getActor(userInput);
+        let getMedia = await dataAccess.getMedia(userInput);
+        let getActor = await dataAccess.getActors(userInput);
+        console.log(getMedia);
         console.log(getActor);
-        infoBox.innerText = JSON.stringify(getActor);
+        let stringifiedMedia = JSON.stringify(getMedia);
+        let stringifiedActor = JSON.stringify(getActor);
+        JSON.stringify(getActor);
+        let allData = `${stringifiedActor}, ${stringifiedMedia}` 
+        infoBox.innerText = allData;
     } else {
-        console.log('gotta make the search bar dummy');
+        console.log('gotta make the UI dummy');
     }
-
-
 }
 
 //Takehito Koyasu

@@ -20,7 +20,7 @@ export class MyDatabase {
     }
     async getActorData() {
         if (this._db) {
-            let sqlCommand = 'select * from actors';
+            let sqlCommand = 'select * from actor';
             console.log('sql:', sqlCommand);
             let currentActor = await this._db.all(sqlCommand);
             //            await this._db.close();

@@ -1,5 +1,6 @@
 import sqlite3 from 'sqlite3';
 import {Database, open} from 'sqlite';
+import {IActor, IMedia} from './types.js';
 
 
 export class MyDatabase {
@@ -14,24 +15,26 @@ export class MyDatabase {
 
     }
 
-    public async getActorByName(name: string): Promise<undefined | IActor> {
-        //get all the actors
-        let actors = await this.getActorData();
-        // for the length of the database array from getActorData check if the name is the same as the input
-        for (let i = 0; i < actors.length; i++) {
-            //if a match is found return the row
-            let actor = actors[i];
-            if (actor.name.toLowerCase() === name.toLowerCase()) {
-                return actor;
-            } 
+    public async getActorByName(name: string): Promise<IActor[]> {
+        if (this._db) {
+
+            let sqlCommand = `select *
+                              from actor
+                              where name like '%${name}%'`;
+            console.log('sql:', sqlCommand);
+
+            let currentActor: IActor[] = await this._db.all(sqlCommand);
+
+            return currentActor;
+        } else {
+            throw new Error('database is undefined');
         }
     }
 
     async getActorData(): Promise<IActor[]> {
         if (this._db) {
 
-
-            let sqlCommand = 'select * from actors';
+            let sqlCommand = 'select * from actor';
             console.log('sql:', sqlCommand);
 
             let currentActor: IActor[] = await this._db.all(sqlCommand);
@@ -42,6 +45,37 @@ export class MyDatabase {
             throw new Error('database is undefined');
         }
 
+    }
+
+    async getMediaAll(): Promise<IMedia[]> {
+        if (this._db) {
+
+            let sqlCommand = 'select * from media';
+            console.log('sql:', sqlCommand);
+
+            let currentMedia: IMedia[] = await this._db.all(sqlCommand);
+
+//            await this._db.close();
+            return currentMedia;
+        } else {
+            throw new Error('database is undefined');
+        }
+    }
+
+    public async getMediaByTitle(title: string): Promise<IMedia[]> {
+        if (this._db) {
+
+            let sqlCommand = `select *
+                              from media
+                              where titleMain like '%${title}%'`;
+            console.log('sql:', sqlCommand);
+
+            let currentMedia: IMedia[] = await this._db.all(sqlCommand);
+
+            return currentMedia;
+        } else {
+            throw new Error('database is undefined');
+        }
     }
 
     public async innitDB() {
@@ -57,51 +91,7 @@ export class MyDatabase {
 }
 
 
-/*
-
-let sqlCommand = 'select * from actors';
-console.log('sql:', sqlCommand);
-db.all(sqlCommand, (err, actors) => {
-    //res.send(fruit); webserver stuff. Send `fruit` to the client
-    if (!err) {
-        console.log(actors);
-    }
-});
-
-db.close();
-
-*/
 
 
-/*
 
-class [class name] {
 
-    public foo: string;
-    private bar: number;
-    
-    constructor(){
-        let do = "stuff";
-        
-        this.bar = 42;
-    }
-
-    public doStuff(){
-        let banana = 'best favorite fruit'
-    }
-    
-    private doPrivateThings(){
-        this.foo = 'private!!!';
-    }    
-
-}
-
- */
-
-export interface IActor {
-    birthday: string;
-    id: number;
-    name: string;
-    notableWork1: string;
-    notableWork2: string;
-}

@@ -1,5 +1,6 @@
 import express, {Request, Response} from 'express';
-import {IActor, MyDatabase} from './MyDatabase.js';
+import {MyDatabase} from './MyDatabase.js';
+import {IActor} from './types.js';
 
 
 const app = express();
@@ -17,7 +18,7 @@ app.get('/temp', (req: Request, res: Response) => {
     res.send('Hello World! This is the alternate text!');
 });
 
-app.get('/findInfo', async (req: Request, res: Response) => {
+app.get('/findActor', async (req: Request, res: Response) => {
     let actorName = req.query.actorName as string | undefined;
     if (actorName) {
         let results = await database.getActorByName(actorName);
@@ -28,6 +29,20 @@ app.get('/findInfo', async (req: Request, res: Response) => {
         res.send('for /findInfo actorName parameter is missing.');
     }
 });
+
+
+app.get('/findMedia', async (req: Request, res: Response) => {
+    let mediaTitle = req.query.mediaTitle as string | undefined;
+    if (mediaTitle) {
+        let results = await database.getMediaByTitle(mediaTitle);
+        res.json(results);
+    } else {
+        console.log('for /findInfo mediaTitle parameter is missing.');
+        res.status(500);
+        res.send('for /findInfo mediaTitle parameter is missing.');
+    }
+})
+
 
 app.get('/func', (req: Request, res: Response) => {
     let param = req.query.name as string;
