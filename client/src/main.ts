@@ -8,6 +8,16 @@ let searchInput = searchBar as HTMLInputElement;
 let infoBox = document.getElementById('infoBox');
 let resetButton = document.getElementById('resetButton');
 
+
+if (searchInput) {
+    searchInput.addEventListener('keyup', async (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault(); // good practice
+            await manageSearchInput();
+        }
+    });
+}
+
 if (searchButton) {
     searchButton.addEventListener('click', async (e) => {
         await manageSearchInput();
@@ -35,7 +45,7 @@ function resetSearch() {
 }
 
 export async function manageSearchInput() {
-    
+
     let userInput;
     if (searchBar && infoBox) {
         userInput = searchInput.value;
@@ -46,7 +56,7 @@ export async function manageSearchInput() {
         let stringifiedMedia = JSON.stringify(getMedia);
         let stringifiedActor = JSON.stringify(getActor);
         JSON.stringify(getActor);
-        let allData = `${stringifiedActor}, ${stringifiedMedia}` 
+        let allData = `${stringifiedActor}, ${stringifiedMedia}`;
         infoBox.innerText = allData;
     } else {
         console.log('gotta make the UI dummy');

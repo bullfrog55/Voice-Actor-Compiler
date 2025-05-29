@@ -1,0 +1,57 @@
+
+:root{
+    --standardTextColor: white;
+    --backgroundColor: #2b2020
+    
+}
+
+
+
+body {
+    background-color: var(--backgroundColor);
+    color: var(--standardTextColor);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+th {
+    height: 50px;
+    text-align: left;
+    background-color: rgb(186, 210, 218);
+}
+
+table,
+th,
+td {
+    border: 1px solid black;
+    border-collapse: collapse;
+
+}
+
+th,
+td {
+    padding: 5px;
+    border-bottom: 1px solid;
+}
+
+button,
+select,
+.myInput {
+    padding: 5px 10px;
+    margin: 5px;
+    background-color: darkgray;
+    border-radius: 8px;
+    border-color: rgb(65, 64, 64);
+
+}
+
+#resetButton{
+    border: none;
+}
+
+#searchBar{
+    background-color: inherit;
+    border: none;
+    font-size: 25px;
+}

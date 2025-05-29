@@ -5,6 +5,14 @@ let searchButton = document.getElementById('searchButton');
 let searchInput = searchBar;
 let infoBox = document.getElementById('infoBox');
 let resetButton = document.getElementById('resetButton');
+if (searchInput) {
+    searchInput.addEventListener('keyup', async (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault(); // good practice
+            await manageSearchInput();
+        }
+    });
+}
 if (searchButton) {
     searchButton.addEventListener('click', async (e) => {
         await manageSearchInput();
