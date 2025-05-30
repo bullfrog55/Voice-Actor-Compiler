@@ -21,16 +21,24 @@ export class DataAccess {
         return returnActors;
     }
     async getMedia(title) {
+        let returnMedia = [];
         let response = await fetch(`http://localhost:3000/findMedia?mediaTitle=${title}`);
         if (response.ok) {
             //console.log(`response from server is: ${await response.text()}`);
-            let jsonData = await response.json();
-            return jsonData;
+            let responseText = await response.text();
+            if (responseText && responseText.length > 0) {
+                let jsonData = JSON.parse(responseText);
+                returnMedia = jsonData;
+            }
+            else {
+                console.log('getMedia found no matching data');
+            }
         }
         else {
             let responseText = await response.text();
             throw new Error(`response didn\'t make it. Status ${response.status}, ${responseText}`);
         }
+        return returnMedia;
     }
 }
 //# sourceMappingURL=DataAccess.js.map
