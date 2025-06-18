@@ -7,18 +7,31 @@
 </head>
 <body>
 
-<h1>VAF</h1>
+<h1>The Database</h1>
 
 <label>
     What do you want to know about?
-    
+
     <div class="myInput">
-    <input id="searchBar">
-    <button id="resetButton">X</button>    
+        <input id="searchBar">
+        <button id="resetButton">X</button>
     </div>
 </label>
 
-<div id="infoBox"></div>
+<div id="infoBoxA"></div>
+
+    <template id="actorTemp">
+        <div>
+            Actor: <span class="name"></span>
+            <span class="birthday"></span>
+        </div>
+    </template>
+
+<template id="mediaTemp">
+    <div>
+        Media: <span class="title"></span>
+    </div>
+</template>
 
 <script src="./main.js" type="module"></script>
 </body>

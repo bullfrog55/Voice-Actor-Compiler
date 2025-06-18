@@ -1,6 +1,6 @@
 import sqlite3 from 'sqlite3';
 import {Database, open} from 'sqlite';
-import {IActor, IMedia} from './types.js';
+import {IActor, ICharacter, IMedia} from './types.js';
 
 
 export class MyDatabase {
@@ -13,6 +13,37 @@ export class MyDatabase {
         //this._db = new sqlite.Database(this._DB_FILENAME);
 
 
+    }
+
+    private async getActorData(): Promise<IActor[]> {
+        if (this._db) {
+
+            let sqlCommand = 'select * from actor';
+            console.log('sql:', sqlCommand);
+
+            let currentActor: IActor[] = await this._db.all(sqlCommand);
+
+//            await this._db.close();
+            return currentActor;
+        } else {
+            throw new Error('database is undefined');
+        }
+
+    }
+
+    private async getMediaAll(): Promise<IMedia[]> {
+        if (this._db) {
+
+            let sqlCommand = 'select * from media';
+            console.log('sql:', sqlCommand);
+
+            let currentMedia: IMedia[] = await this._db.all(sqlCommand);
+
+//            await this._db.close();
+            return currentMedia;
+        } else {
+            throw new Error('database is undefined');
+        }
     }
 
     public async getActorByName(name: string): Promise<IActor[]> {
@@ -30,33 +61,15 @@ export class MyDatabase {
             throw new Error('database is undefined');
         }
     }
-
-    async getActorData(): Promise<IActor[]> {
+    
+    public async getCharacterByName(name: string): Promise<ICharacter[]> {
         if (this._db) {
-
-            let sqlCommand = 'select * from actor';
+            let sqlCommand = `select *
+                              from character
+                              where name like '%${name}%'`;
             console.log('sql:', sqlCommand);
-
-            let currentActor: IActor[] = await this._db.all(sqlCommand);
-
-//            await this._db.close();
-            return currentActor;
-        } else {
-            throw new Error('database is undefined');
-        }
-
-    }
-
-    async getMediaAll(): Promise<IMedia[]> {
-        if (this._db) {
-
-            let sqlCommand = 'select * from media';
-            console.log('sql:', sqlCommand);
-
-            let currentMedia: IMedia[] = await this._db.all(sqlCommand);
-
-//            await this._db.close();
-            return currentMedia;
+            let currentCharacter: ICharacter[] = await this._db.all(sqlCommand);
+            return currentCharacter;
         } else {
             throw new Error('database is undefined');
         }

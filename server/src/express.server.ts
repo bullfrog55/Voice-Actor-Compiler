@@ -41,8 +41,19 @@ app.get('/findMedia', async (req: Request, res: Response) => {
         res.status(500);
         res.send('for /findInfo mediaTitle parameter is missing.');
     }
-})
+});
 
+app.get('/findCharacter', async (req: Request, res: Response) => {
+    let characterName = req.query.characterName as string | undefined;
+    if (characterName) {
+        let results = await database.getCharacterByName(characterName);
+        res.json(results);
+    } else {
+        console.log('for /findCharacter characterName parameter is missing.');
+        res.status(500);
+        res.send('for /findCharacter characterName parameter is missing.');
+    }
+});
 
 app.get('/func', (req: Request, res: Response) => {
     let param = req.query.name as string;
@@ -53,16 +64,12 @@ app.get('/func', (req: Request, res: Response) => {
         birthday: '123',
         name: 'joe',
         id: 72,
-        notableWork1: 'something',
-        notableWork2: 'something else'
     };
 
     let secondPerson: IActor = {
         birthday: '456',
         name: 'hank',
         id: 73,
-        notableWork1: 'nothing',
-        notableWork2: 'nothing else'
     };
 
     if (param && ageParam) {
@@ -83,10 +90,6 @@ app.listen(port, (error?) => {
         console.log(`Example app listening on port ${port}`);
     }
 });
-
-
-
-
 
 
 //Takehito Koyasu
