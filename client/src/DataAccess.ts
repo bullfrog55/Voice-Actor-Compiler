@@ -40,7 +40,7 @@ export class DataAccess {
 
     public async getCharacter(name: string): Promise<ICharacter[]> {
         let returnCharacter: ICharacter[] = [];
-        let response = await fetch(`http://localhost:3000/findCharacter?name=${name}`);
+        let response = await fetch(`http://localhost:3000/findCharacter?characterName=${name}`);
         if (response.ok) {
             let responseText = await response.text();
             if (responseText && responseText.length > 0) {

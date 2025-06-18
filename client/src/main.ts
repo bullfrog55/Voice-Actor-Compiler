@@ -9,9 +9,9 @@ export async function manageSearchInput(searchInput: string) {
     let getMedia = await dataAccess.getMedia(searchInput);
     let getActor = await dataAccess.getActors(searchInput);
     let getCharacter = await dataAccess.getCharacter(searchInput);
-    console.log(getMedia);
-    console.log(getActor);
-    console.log(getCharacter);
+    console.log('media that was got',getMedia);
+    console.log('actors that were got', getActor);
+    console.log('characters that were got', getCharacter);
     mainView.showMedia(getMedia);
     mainView.showActors(getActor);
     mainView.showCharacter(getCharacter);

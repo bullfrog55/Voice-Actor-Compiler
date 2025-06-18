@@ -15,37 +15,6 @@ export class MyDatabase {
 
     }
 
-    private async getActorData(): Promise<IActor[]> {
-        if (this._db) {
-
-            let sqlCommand = 'select * from actor';
-            console.log('sql:', sqlCommand);
-
-            let currentActor: IActor[] = await this._db.all(sqlCommand);
-
-//            await this._db.close();
-            return currentActor;
-        } else {
-            throw new Error('database is undefined');
-        }
-
-    }
-
-    private async getMediaAll(): Promise<IMedia[]> {
-        if (this._db) {
-
-            let sqlCommand = 'select * from media';
-            console.log('sql:', sqlCommand);
-
-            let currentMedia: IMedia[] = await this._db.all(sqlCommand);
-
-//            await this._db.close();
-            return currentMedia;
-        } else {
-            throw new Error('database is undefined');
-        }
-    }
-
     public async getActorByName(name: string): Promise<IActor[]> {
         if (this._db) {
 

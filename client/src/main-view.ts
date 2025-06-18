@@ -5,7 +5,7 @@ export class MainView {
     private actorTemp: HTMLTemplateElement | null;
     private infoBoxA: HTMLElement | null;
     private mediaTemp: HTMLTemplateElement | null;
-    private characterTemp: HTMLTemplateElement | null | undefined;
+    private characterTemp: HTMLTemplateElement | null;
     private resetButton: HTMLButtonElement | null;
     private searchInput: HTMLInputElement | null;
    
@@ -15,6 +15,7 @@ export class MainView {
         this.infoBoxA = document.getElementById('infoBoxA');
         this.actorTemp = document.getElementById('actorTemp') as HTMLTemplateElement | null;
         this.mediaTemp = document.getElementById('mediaTemp') as HTMLTemplateElement | null;
+        this.characterTemp = document.getElementById('characterTemp') as HTMLTemplateElement | null;
         this.searchInput = document.getElementById('searchBar') as HTMLInputElement;
         this.resetButton = document.getElementById('resetButton') as HTMLButtonElement | null;
 
@@ -119,7 +120,7 @@ export class MainView {
                     console.log('Template content added to the body');
                 }
             }else{
-                console.log('template not found');
+                console.log('character template not found');
             }
         }
     }
