@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="style.css" rel="stylesheet">
+    <title>Info Page</title>
+</head>
+<body>
+
+<div id="parentDiv">
+    <div id="leftSide">
+        <img id="poster" src="./images/Eren_Jaeger.webp"/>
+        <div id="title">hardcoded value</div>
+        <div id="timeSpan">hardcoded value</div>
+        <div id="synopsis">SYNOPSIS!!!!Bacon ipsum dolor amet alcatra kevin strip steak leberkas pork chop t-bone
+            chislic
+            ball
+            tip cupim pork belly frankfurter capicola. Brisket sausage shoulder kielbasa, corned beef pork chop chislic
+            pork
+            loin fatback spare ribs beef turkey. Buffalo bresaola spare ribs, corned beef shankle kielbasa pork belly
+            ribeye
+            pastrami chislic alcatra pork t-bone cow drumstick. Short ribs pastrami cow, sirloin leberkas hamburger
+            turducken
+            capicola bacon andouille turkey prosciutto. Bacon chuck cupim swine corned beef, beef ribs cow frankfurter
+            shankle
+            biltong chislic meatloaf chicken rump. Shankle bacon hamburger beef doner andouille swine kielbasa pork pig.
+        </div>
+    </div>
+    <div id="rightSide">
+        <div id="topBar">
+            <button onclick="window.location.assign('http://localhost:3000/')"> home button</button>
+            <input type="text"/>
+        </div>
+        <div id="mainBody">
+            ipsum dolor amet jowl shoulder beef ribs landjaeger rump frankfurter strip steak chislic buffalo
+            salami chuck tri-tip andouille. Biltong ham hock doner hamburger. Salami leberkas landjaeger capicola
+            frankfurter. Jerky ball tip porchetta alcatra short ribs burgdoggen hamburger.
+            Shank shankle andouille meatball. Beef salami pork belly corned beef pork loin sausage pork leberkas chislic
+            boudin ham kielbasa tongue andouille hamburger. Biltong short loin picanha, hamburger venison shoulder shank
+            chislic bacon
+            pastrami landjaeger chicken. Turkey tri-tip spare ribs beef ribs ham corned beef. Ball tip swine rump
+            t-bone, cupim
+            prosciutto leberkas sausage shankle biltong. Cupim biltong chislic ham pig tail.
+            Beef ribs pig t-bone swine shank andouille jerky buffalo frankfurter alcatra tongue. Salami spare ribs
+            shoulder pork
+            chop swine kevin biltong drumstick turkey meatball. Bacon prosciutto chislic pig t-bone. Leberkas capicola
+            pork
+            ground round tri-tip pork belly venison pork chop porchetta beef short loin drumstick t-bone prosciutto
+            kevin.
+            Meatball flank swine, pork loin salami shoulde
+            <div class="entry">
+                <div class="character"><img src="./images/Eren_Jaeger.webp"/></div>
+                <div class="characterName">hardcoded value</div>
+                <div class="actorName">hardcoded value</div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="module">
+    import {InfoPageView} from './infoPageView.js'
+    import {InfoPageService} from './infoPageService.js';
+    import {DataAccess} from '../DataAccess.js';
+
+    let view = new InfoPageView();
+    let data = new DataAccess();
+    let service = new InfoPageService(view, data);
+    service.pageLoad();
+
+</script>
+</body>
+</html>

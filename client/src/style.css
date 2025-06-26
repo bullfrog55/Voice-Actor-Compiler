@@ -55,3 +55,7 @@ select,
     border: none;
     font-size: 25px;
 }
+
+#infoPage{
+    display: none;
+}

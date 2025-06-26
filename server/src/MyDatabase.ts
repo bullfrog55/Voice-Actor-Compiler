@@ -1,6 +1,6 @@
 import sqlite3 from 'sqlite3';
 import {Database, open} from 'sqlite';
-import {IActor, ICharacter, IMedia} from './types.js';
+import {IActor, ICharacter, IMedia} from './serverTypes.js';
 
 
 export class MyDatabase {
@@ -13,6 +13,22 @@ export class MyDatabase {
         //this._db = new sqlite.Database(this._DB_FILENAME);
 
 
+    }
+
+    async getActorById(actorId: number): Promise<IActor | undefined> {
+        if (this._db) {
+
+            let sqlCommand = `select *
+                              from actor
+                              where id = ${actorId}`;
+            console.log('sql:', sqlCommand);
+
+            let currentActor: IActor | undefined = await this._db.get(sqlCommand);
+
+            return currentActor;
+        } else {
+            throw new Error('database is undefined');
+        }
     }
 
     public async getActorByName(name: string): Promise<IActor[]> {
@@ -30,7 +46,21 @@ export class MyDatabase {
             throw new Error('database is undefined');
         }
     }
-    
+
+    public async getCharacterById(id: number): Promise<ICharacter | undefined> {
+        if (this._db) {
+            let sqlCommand = `select *
+                              from character
+                              where id = ${id}`;
+            console.log('sql:', sqlCommand);
+            let currentCharacter: ICharacter | undefined = await this._db.get(sqlCommand);
+
+            return currentCharacter;
+        } else {
+            throw new Error('database is undefined');
+        }
+    }
+
     public async getCharacterByName(name: string): Promise<ICharacter[]> {
         if (this._db) {
             let sqlCommand = `select *
@@ -39,6 +69,22 @@ export class MyDatabase {
             console.log('sql:', sqlCommand);
             let currentCharacter: ICharacter[] = await this._db.all(sqlCommand);
             return currentCharacter;
+        } else {
+            throw new Error('database is undefined');
+        }
+    }
+
+    public async getMediaById(id: number): Promise<IMedia | undefined> {
+        if (this._db) {
+
+            let sqlCommand = `select *
+                              from media
+                              where id like ${id}`;
+            console.log('sql:', sqlCommand);
+
+            let currentMedia: IMedia | undefined = await this._db.get(sqlCommand);
+
+            return currentMedia;
         } else {
             throw new Error('database is undefined');
         }
@@ -66,10 +112,7 @@ export class MyDatabase {
             filename: this._DB_FILENAME,
             driver: sqlite3.Database
         });
-
-
     };
-
 }
 
 

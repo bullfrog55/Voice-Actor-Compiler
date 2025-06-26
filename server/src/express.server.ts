@@ -1,6 +1,6 @@
 import express, {Request, Response} from 'express';
 import {MyDatabase} from './MyDatabase.js';
-import {IActor} from './types.js';
+import {IActor} from './serverTypes.js';
 
 
 const app = express();
@@ -10,7 +10,7 @@ app.use(express.static('client/src'));
 await database.innitDB();
 
 
-app.get('/', (req: Request, res: Response) => {
+app.get('/bd', (req: Request, res: Response) => {
     res.send('Hello World! Today is my birthday!');
 });
 
@@ -18,17 +18,30 @@ app.get('/temp', (req: Request, res: Response) => {
     res.send('Hello World! This is the alternate text!');
 });
 
-app.get('/findActor', async (req: Request, res: Response) => {
+app.get('/findActorByName', async (req: Request, res: Response) => {
     let actorName = req.query.actorName as string | undefined;
     if (actorName) {
         let results = await database.getActorByName(actorName);
         res.json(results);
     } else {
-        console.log('for /findInfo actorName parameter is missing.');
+        console.log('for /findActorByName actorName parameter is missing.');
         res.status(500);
-        res.send('for /findInfo actorName parameter is missing.');
+        res.send('for /findActorByName actorName parameter is missing.');
     }
 });
+
+app.get('/getActorById', async (req: Request, res: Response) => {
+    let actorId = req.query.actorId as number | undefined;
+    if (actorId) {
+        let results = await database.getActorById(actorId);
+        res.json(results);
+    } else {
+        console.log('for /getActorById actorId parameter is missing.');
+        res.status(500);
+        res.send('for /getActorById actorId parameter is missing.');
+    }
+});
+
 
 
 app.get('/findMedia', async (req: Request, res: Response) => {
@@ -43,6 +56,18 @@ app.get('/findMedia', async (req: Request, res: Response) => {
     }
 });
 
+app.get('/getMediaById', async (req: Request, res: Response) => {
+    let mediaId = req.query.mediaId as number | undefined;
+    if (mediaId) {
+        let results = await database.getMediaById(mediaId);
+        res.json(results);
+    } else {
+        console.log('for /getMediaById mediaId parameter is missing.');
+        res.status(500);
+        res.send('for /getMediaById mediaId parameter is missing.');
+    }
+});
+
 app.get('/findCharacter', async (req: Request, res: Response) => {
     let characterName = req.query.characterName as string | undefined;
     if (characterName) {
@@ -52,6 +77,19 @@ app.get('/findCharacter', async (req: Request, res: Response) => {
         console.log('for /findCharacter characterName parameter is missing.');
         res.status(500);
         res.send('for /findCharacter characterName parameter is missing.');
+    }
+});
+
+
+app.get('/getCharacterById', async (req: Request, res: Response) => {
+    let characterId = req.query.characterId as number | undefined;
+    if (characterId) {
+        let results = await database.getCharacterById(characterId);
+        res.json(results);
+    } else {
+        console.log('for /getCharacterById characterId parameter is missing.');
+        res.status(500);
+        res.send('for /getCharacterById characterId parameter is missing.');
     }
 });
 
@@ -82,7 +120,7 @@ app.get('/func', (req: Request, res: Response) => {
 
     res.json(dummy);
 });
-
+const hostname = '192.168.86.*';
 app.listen(port, (error?) => {
     if (error) {
         console.log(error);

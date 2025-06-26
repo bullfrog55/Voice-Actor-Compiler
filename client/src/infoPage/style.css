@@ -1,0 +1,74 @@
+
+body {
+
+}
+
+#synopsis {
+
+    background-color: darksalmon;
+    border: 1px solid darksalmon;
+}
+
+#poster {
+    width: 100%;
+
+}
+
+#timeSpan {
+
+    background-color: crimson;
+    border: 1px solid crimson;
+    text-align: center;
+}
+
+#title {
+
+    background-color: aquamarine;
+    border: 1px solid aquamarine;
+    text-align: center;
+}
+
+#mainBody {
+
+    background-color: bisque;
+    border: 1px solid bisque;
+    padding: 5px;
+}
+
+#leftSide {
+    background-color: teal;
+    flex-basis: 200px;
+    flex-shrink: 0;
+    padding: 5px;
+}
+
+#rightSide {
+    background-color: orange;
+    padding: 5px;
+}
+
+#parentDiv {
+    display: flex;
+}
+
+#topBar {
+    background-color: blueviolet;
+    padding: 5px;
+    margin: 10px;
+}
+
+.entry{
+    height:75px;
+    background-color: chartreuse;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.character{
+    height: 100%;
+}
+
+.character > img{
+    height: 100%;
+}
