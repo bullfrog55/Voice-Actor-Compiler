@@ -1,3 +1,6 @@
+
+//this file is old stuff not being used anymore
+
 import readline from 'node:readline';
 import {MyDatabase} from './MyDatabase.js';
 

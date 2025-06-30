@@ -1,12 +1,17 @@
 import {IActor, ICharacter, IMedia} from '../../server/src/serverTypes.js';
 
 export class DataAccess {
+    private apiURL: string;
+
+    constructor(apiURL: string) {
+        this.apiURL = apiURL;
+    }
 
     public async getActorById(actorId: number): Promise<IActor | undefined> {
         let returnActor: IActor | undefined;
 
-        //http://localhost:3000/findInfo?actorName=Takehito%20Koyasu
-        let response = await fetch(`http://localhost:3000/getActorById?actorId=${actorId}}`);
+        //http://localhost:3001/findInfo?actorName=Takehito%20Koyasu
+        let response = await fetch(`${this.apiURL}/getActorById?actorId=${actorId}`);
         if (response.ok) {
             //console.log(`response from server is: ${await response.text()}`);
             let responseText = await response.text();
@@ -25,7 +30,7 @@ export class DataAccess {
         let returnActors: IActor[] = [];
 
         //http://localhost:3000/findInfo?actorName=Takehito%20Koyasu
-        let response = await fetch(`http://localhost:3000/findActorByName?actorName=${name}`);
+        let response = await fetch(`${this.apiURL}/findActorByName?actorName=${name}`);
         if (response.ok) {
             //console.log(`response from server is: ${await response.text()}`);
             let responseText = await response.text();
@@ -43,7 +48,7 @@ export class DataAccess {
     //method to get character by id
     public async getCharacterById(characterId: number): Promise<ICharacter | undefined> {
         let returnCharacter: ICharacter | undefined;
-        let response = await fetch(`http://localhost:3000/getCharacterById?characterId=${characterId}`);
+        let response = await fetch(`${this.apiURL}/getCharacterById?characterId=${characterId}`);
 
         if (response.ok) {
 
@@ -63,7 +68,7 @@ export class DataAccess {
 
     public async getCharacterByName(name: string): Promise<ICharacter[]> {
         let returnCharacter: ICharacter[] = [];
-        let response = await fetch(`http://localhost:3000/findCharacter?characterName=${name}`);
+        let response = await fetch(`${this.apiURL}/findCharacter?characterName=${name}`);
         if (response.ok) {
             let responseText = await response.text();
             if (responseText && responseText.length > 0) {
@@ -83,7 +88,7 @@ export class DataAccess {
      */
     public async getMediaById(mediaId: number): Promise<IMedia | undefined> {
         let returnMedia: IMedia | undefined;
-        let response = await fetch(`http://localhost:3000/getMediaById?mediaId=${mediaId}`);
+        let response = await fetch(`${this.apiURL}/getMediaById?mediaId=${mediaId}`);
 
         if (response.ok) {
 
@@ -101,7 +106,7 @@ export class DataAccess {
 
     public async getMediaByTitle(title: string): Promise<IMedia[]> {
         let returnMedia: IMedia[] = [];
-        let response = await fetch(`http://localhost:3000/findMedia?mediaTitle=${title}`);
+        let response = await fetch(`${this.apiURL}/findMedia?mediaTitle=${title}`);
         if (response.ok) {
             //console.log(`response from server is: ${await response.text()}`);
             let responseText = await response.text();
@@ -115,6 +120,4 @@ export class DataAccess {
         }
         return returnMedia;
     }
-
-
 }

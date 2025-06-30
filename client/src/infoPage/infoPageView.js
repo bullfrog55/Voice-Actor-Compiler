@@ -30,5 +30,14 @@ export class InfoPageView {
             mediaId: currentMediaId,
         };
     }
+    displayActor(currActor) {
+        console.log('the current actor is: ', currActor);
+    }
+    displayCharacter(currCharacter) {
+        console.log('the current character is: ', currCharacter);
+    }
+    displayMedia(currMedia) {
+        console.log('the current media is: ', currMedia);
+    }
 }
 //# sourceMappingURL=infoPageView.js.map

@@ -28,7 +28,7 @@
     </div>
     <div id="rightSide">
         <div id="topBar">
-            <button onclick="window.location.assign('http://localhost:3000/')"> home button</button>
+            <button onclick="window.location.assign('http://localhost:3001/')"> home button</button>
             <input type="text"/>
         </div>
         <div id="mainBody">
@@ -62,7 +62,7 @@
     import {DataAccess} from '../DataAccess.js';
 
     let view = new InfoPageView();
-    let data = new DataAccess();
+    let data = new DataAccess("http://localhost:3001");
     let service = new InfoPageService(view, data);
     service.pageLoad();
 

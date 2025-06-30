@@ -7,14 +7,54 @@ export class InfoPageService {
         this.infoPageView = view;
         this.data = data;
     }
-    pageLoad() {
-        this.paramData = this.infoPageView.getParamData();
-        console.log('Service says: currentId is ', this.paramData);
+    async initContent() {
+        if (this.paramData) {
+            if (this.paramData.actorId) {
+                await this.initActor(this.paramData.actorId);
+            }
+            else if (this.paramData.characterId) {
+                await this.initCharacter(this.paramData.characterId);
+            }
+            else if (this.paramData.mediaId) {
+                await this.initMedia(this.paramData.mediaId);
+            }
+        }
     }
-    getDatabaseInfo() {
-        //question mark checks paramData first and then actorId. if paramData is undefined then the whole if returns undefined
+    async getDatabaseInfo() {
+        //question mark checks if paramData is defined first and then actorId. if paramData is undefined then the whole If returns undefined
+        let definedData;
         if (this.paramData?.actorId) {
-            this.data.getActorById(this.paramData.actorId);
+            definedData = await this.data.getActorById(this.paramData.actorId);
+        }
+        else if (this.paramData?.characterId) {
+            definedData = await this.data.getCharacterById(this.paramData.characterId);
+        }
+        else if (this.paramData?.mediaId) {
+            definedData = await this.data.getMediaById(this.paramData.mediaId);
+        }
+        return definedData;
+    }
+    async pageLoad() {
+        this.paramData = this.infoPageView.getParamData();
+        console.log(`Service says currentId is: `, this.paramData);
+        await this.initContent();
+    }
+    async initActor(actorId) {
+        let retrievalResults = await this.data.getActorById(actorId);
+        if (retrievalResults) {
+            this.infoPageView.displayActor(retrievalResults);
+        }
+    }
+    async initCharacter(characterId) {
+        let retrievalResults = await this.data.getCharacterById(characterId);
+        if (retrievalResults) {
+            this.infoPageView.displayCharacter(retrievalResults);
+        }
+    }
+    async initMedia(mediaId) {
+        let retrievalResults = await this.data.getMediaById(mediaId);
+        if (retrievalResults) {
+            this.infoPageView.displayMedia(retrievalResults);
         }
     }
 }

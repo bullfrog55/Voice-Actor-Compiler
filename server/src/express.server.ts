@@ -1,10 +1,11 @@
 import express, {Request, Response} from 'express';
 import {MyDatabase} from './MyDatabase.js';
 import {IActor} from './serverTypes.js';
+import {port} from "./constants.js"
 
 
 const app = express();
-const port = 3000;
+
 let database = new MyDatabase();
 app.use(express.static('client/src'));
 await database.innitDB();
