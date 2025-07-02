@@ -2,6 +2,7 @@ export class InfoPageService {
     data;
     infoPageView;
     paramData;
+    imagePath = './images/';
     constructor(view, data) {
         console.log('info page loading');
         this.infoPageView = view;
@@ -42,19 +43,19 @@ export class InfoPageService {
     async initActor(actorId) {
         let retrievalResults = await this.data.getActorById(actorId);
         if (retrievalResults) {
-            this.infoPageView.displayActor(retrievalResults);
+            this.infoPageView.displaySideBar(this.imagePath + retrievalResults.picture, retrievalResults.name, 'text is', 'this guy good at voice acting');
         }
     }
     async initCharacter(characterId) {
         let retrievalResults = await this.data.getCharacterById(characterId);
         if (retrievalResults) {
-            this.infoPageView.displayCharacter(retrievalResults);
+            this.infoPageView.displaySideBar(this.imagePath + retrievalResults.picture, retrievalResults.name, 'text is', 'this guy (or girl) is super awesome and they are the best character no matter what anyone says');
         }
     }
     async initMedia(mediaId) {
         let retrievalResults = await this.data.getMediaById(mediaId);
         if (retrievalResults) {
-            this.infoPageView.displayMedia(retrievalResults);
+            this.infoPageView.displaySideBar(this.imagePath + retrievalResults.picture, retrievalResults.titleMain, 'text is', 'this media is super good and you should totally go watch it because of how good it is');
         }
     }
 }

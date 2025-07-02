@@ -1,5 +1,13 @@
 export class InfoPageView {
+    titleBox;
+    posterBox;
+    timeBox;
+    synopsisBox;
     constructor() {
+        this.titleBox = document.getElementById('title');
+        this.posterBox = document.getElementById('poster');
+        this.timeBox = document.getElementById('timeSpan');
+        this.synopsisBox = document.getElementById('synopsis');
         //const urlParams = new URLSearchParams(window.location.search);
         //const myParam = urlParams.get('myParam');
     }
@@ -30,14 +38,11 @@ export class InfoPageView {
             mediaId: currentMediaId,
         };
     }
-    displayActor(currActor) {
-        console.log('the current actor is: ', currActor);
-    }
-    displayCharacter(currCharacter) {
-        console.log('the current character is: ', currCharacter);
-    }
-    displayMedia(currMedia) {
-        console.log('the current media is: ', currMedia);
+    displaySideBar(image, title, timeSpan, synopsis) {
+        this.titleBox.innerText = title;
+        this.synopsisBox.innerText = synopsis;
+        this.timeBox.innerText = timeSpan;
+        this.posterBox.src = image;
     }
 }
 //# sourceMappingURL=infoPageView.js.map

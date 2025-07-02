@@ -1,11 +1,15 @@
-import {InfoPageService} from './infoPageService.js';
-import {IActor, ICharacter, IMedia} from '../../../server/src/serverTypes.js';
-
 export class InfoPageView {
+    private titleBox: HTMLDivElement;
+    private posterBox: HTMLImageElement;
+    private timeBox: HTMLDivElement;
+    private synopsisBox: HTMLDivElement;
 
 
     constructor() {
-        
+        this.titleBox = document.getElementById('title') as HTMLDivElement;
+        this.posterBox = document.getElementById('poster') as HTMLImageElement;
+        this.timeBox = document.getElementById('timeSpan') as HTMLDivElement;
+        this.synopsisBox = document.getElementById('synopsis') as HTMLDivElement;
         //const urlParams = new URLSearchParams(window.location.search);
         //const myParam = urlParams.get('myParam');
     }
@@ -39,18 +43,14 @@ export class InfoPageView {
             mediaId: currentMediaId,
         };
     }
-
-    displayActor(currActor: IActor) {
-        console.log('the current actor is: ', currActor);        
-    }
-    displayCharacter(currCharacter: ICharacter) {
-        console.log('the current character is: ', currCharacter);
-    }
-    displayMedia(currMedia: IMedia) {
-        console.log('the current media is: ', currMedia);
+    
+    displaySideBar(image:string, title: string, timeSpan:string, synopsis:string){
+        this.titleBox.innerText = title;
+        this.synopsisBox.innerText = synopsis;
+        this.timeBox.innerText = timeSpan;
+        this.posterBox.src = image;
     }
 }
-
 
 export interface IInfoPageParamData {
     actorId: number | undefined;
@@ -58,5 +58,3 @@ export interface IInfoPageParamData {
     mediaId: number | undefined;
 
 }
-
-

@@ -99,27 +99,9 @@ app.get('/func', (req: Request, res: Response) => {
     console.log(req.query);
     let ageParam = req.query.age as string;
 
-    let firstPerson: IActor = {
-        birthday: '123',
-        name: 'joe',
-        id: 72,
-    };
+    
 
-    let secondPerson: IActor = {
-        birthday: '456',
-        name: 'hank',
-        id: 73,
-    };
-
-    if (param && ageParam) {
-        firstPerson.name = param;
-        secondPerson.birthday = ageParam;
-    }
-
-    let dummy: IActor[] = [firstPerson, secondPerson];
-
-
-    res.json(dummy);
+    
 });
 const hostname = '192.168.86.*';
 app.listen(port, (error?) => {
